@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>User Profile</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(to right, #e6f0ff, #f9f9f9);
+            padding: 30px;
+        }
+
+        .profile-container {
+            background: white;
+            max-width: 600px;
+            margin: auto;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+
+        h2 {
+            text-align: center;
+            color: #333;
+        }
+
+        label {
+            display: block;
+            margin-top: 15px;
+            font-weight: bold;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        textarea,
+        select {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+        }
+
+        .button-group {
+            text-align: center;
+            margin-top: 25px;
+        }
+
+        .btn {
+            padding: 10px 20px;
+            margin: 10px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            text-decoration: none;
+        }
+
+        .btn:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+
+<div class="profile-container">
+	<h1 style="text-align: center; color: #007bff;">Welcome! Please fill your profile</h1>
+	<h2 th:text="${user != null} ? ${user.name} : 'Guest'">Welcome!</h2>
+	<form th:action="@{/updateProfile}" method="post" th:object="${user}">
+	    <label>Name</label>
+	    <input type="text" th:field="*{name}" readonly>
+
+	    <label>Email</label>
+	    <input type="email" th:field="*{email}" readonly>
+
+
+	    <label>Interests</label>
+	    <select th:field="*{interests}" required>
+	        <option value="">-- Select Interest --</option>
+	        <option value="Full Stack Web Developer">Full Stack Web Developer</option>
+	        <option value="Frontend Developer">Frontend Developer</option>
+	        <option value="Backend Developer">Backend Developer</option>
+	        <option value="Software Developer">Software Developer</option>
+	        <option value="Data Analyst">Data Analyst</option>
+			<option value="UI/UX Designer">UI/UX Designer</option>
+			<option value="Cybersecurity Analyst">Cybersecurity Analyst</option>
+			<option value="Cloud Engineer">Cloud Engineer</option>
+			<option value="Software Tester / QA">Software Tester / QA</option>
+			<option value="Digital Marketer">Digital Marketer</option>
+			<option value="Mobile App Developer">Mobile App Developer</option>
+			<option value="AI/ML Engineer">AI/ML Engineer</option>
+			<option value="Technical Support">Technical Support</option>
+			
+	    </select>
+
+	    <div class="button-group">
+			<center>
+	        <button class="btn" type="submit">Save Profile</button>
+			</center>
+	    </div>
+	</form>
+</div>
+
+</body>
+</html>
